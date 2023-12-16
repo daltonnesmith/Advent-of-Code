@@ -16,6 +16,10 @@ function Main(): void {
      */
     const sum = arrayToSum.reduce((acc, current) => acc + current, 0);
 
+    /**
+     * Answer to day one of advent code: 273501360
+     * @returns array of numbers from the input file
+     */
     function stringToArrayProcessor(): number[] {
         let editString = "";
         let resultArray: number[] = [];
@@ -59,6 +63,11 @@ function Main(): void {
         }
     }
 
+    /**
+     * Split text into an array
+     * @param input string of text
+     * @returns array of strings
+     */
     function splitTextArray(input: string): string[] {
         // Split the input string by newline characters
         const lines = input.split("\r\n");
@@ -75,7 +84,6 @@ function Main(): void {
 
         return resultArray;
     }
-    console.log("running");
 }
 
 Main();
