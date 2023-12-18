@@ -1,27 +1,42 @@
 // logic.ts
 import * as fs from "fs";
 
-export class MyLogic {
-    private inputString: string;
-    private isMatch: boolean;
-    private pattern: RegExp;
+/**
+ * Regex to check for consecutive numbers and shared first/last letter
+ */
+export function extractNumbers(words: string[]): number[] {
+    const numberMapping: { [key: string]: string } = {
+        zero: "0",
+        one: "1",
+        two: "2",
+        three: "3",
+        four: "4",
+        five: "5",
+        six: "6",
+        seven: "7",
+        eight: "8",
+        nine: "9",
+    };
 
-    constructor(inputString: string) {
-        this.inputString = inputString;
-        // Regular expression to check for consecutive numbers and shared first/last letter
-        this.pattern = /(\d+)|(\b\w(\w)\w*\2\w*\b)/;
-        // Use test() to check if the pattern matches the input string
-        this.isMatch = this.pattern.test(this.inputString);
-    }
-
-    checkMatch(): void {
-        // Check if a match is found
-        if (this.isMatch) {
-            console.log("Match found");
-        } else {
-            console.log("Match not found");
+    // Helper function to extract numeric value from a single word
+    //TODO: refactor this has an error - currently only returns the string words and not the numbers
+    function extractNumberFromWord(word: string): number {
+        for (const key of Object.keys(numberMapping)) {
+            word = word.replace(new RegExp(key, "g"), numberMapping[key]);
         }
+        return parseInt(word, 10);
     }
+
+    // Map each word to its numeric value
+    const numericValues = words.map(extractNumberFromWord);
+
+    // return only the first and last value of each word
+    return numericValues.map((value) => {
+        const stringValue = value.toString();
+        return (
+            parseInt(stringValue[0] + stringValue[stringValue.length - 1]) || 0
+        );
+    });
 }
 
 /**
