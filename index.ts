@@ -26,6 +26,11 @@ function Main(): void {
     /**
      * Advent of Code Day Two - Solution
      */
+    //#region Day Two
+
+    const inputData = MyLogic.readInputFile(inputFilePath);
+    const textArray = MyLogic.splitTextArray(inputData);
+
 }
 
 Main();
