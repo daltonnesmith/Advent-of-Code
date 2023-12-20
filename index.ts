@@ -30,6 +30,7 @@ function Main(): void {
 
     const inputData = MyLogic.readInputFile(inputFilePath);
     const textArray = MyLogic.splitTextArray(inputData);
+    //I am only testing the github contribution
 }
 //This does't work for git hub contributions
 Main();
